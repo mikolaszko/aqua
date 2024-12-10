@@ -4,10 +4,9 @@ Fish.__index = Fish
 function Fish:new(img_src, speed)
     local fish = {}
     local random = love.math.random(0, 1)
-    print(random)
     width, height = love.graphics.getDimensions()
     fish.x = love.math.random(trunc_w, width - trunc_w)
-    fish.y = love.math.random(trunc_h, height - trunc_h)
+    fish.y = love.math.random(trunc_h + 20, height - trunc_h - 20)
     fish.speed = speed
     fish.img = love.graphics.newImage(img_src)
     -- TODO: tell Pablo to draw them to the right and change the sx
@@ -36,11 +35,11 @@ function Fish:update(dt)
     end
 
     if self.x < trunc_w + 20 then
-         self.swim_dir = "right"
-         self.sx = -1
+        self.swim_dir = "right"
+        self.sx = -1
     elseif self.x > width - trunc_w - 20 then
-         self.swim_dir = "left"
-         self.sx = 1
+        self.swim_dir = "left"
+        self.sx = 1
     end
 end
 
