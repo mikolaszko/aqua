@@ -4,7 +4,7 @@ Plant.__index = Plant
 function Plant:new(img_src)
 	local plant = {}
 	local width, height = love.graphics.getDimensions()
-	plant.x = love.math.random(trunc_w, width - trunc_w)
+	plant.x = love.math.random(trunc_w + 20, width - trunc_w - 20)
 	plant.y = height - trunc_h - 60
 	plant.img = love.graphics.newImage(img_src)
 	setmetatable(plant, Plant)
