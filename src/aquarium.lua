@@ -5,31 +5,30 @@ local width, height = love.graphics.getDimensions()
 
 --float size_w | float size_h
 function Aquarium:new(size_w, size_h)
-    local aquarium= {}
-    trunc_w = width * size_w
-    trunc_h = height * size_h
+	local aquarium = {}
+	trunc_w = width * size_w
+	trunc_h = height * size_h
 
-    glass_filth = FILTH:new()
+	glass_filth = FILTH:new()
 
-    setmetatable(aquarium, Aquarium)
-    return aquarium
+	setmetatable(aquarium, Aquarium)
+	return aquarium
 end
 
 function Aquarium:draw()
-    glass_filth:draw()
-    love.graphics.setColor(0,0,0)
+	glass_filth:draw()
+	love.graphics.setColor(0, 0, 0)
 
-    love.graphics.line(trunc_w, trunc_h, trunc_w, height - trunc_h)
-    love.graphics.line(trunc_w, height - trunc_h, width - trunc_w, height - trunc_h)
-    love.graphics.line(width - trunc_w, trunc_h, width - trunc_w, height - trunc_h)
+	love.graphics.line(trunc_w, trunc_h, trunc_w, height - trunc_h)
+	love.graphics.line(trunc_w, height - trunc_h, width - trunc_w, height - trunc_h)
+	love.graphics.line(width - trunc_w, trunc_h, width - trunc_w, height - trunc_h)
 
-    love.graphics.setColor(1,1,1)
+	love.graphics.setColor(1, 1, 1)
 end
 
-local clock = 0
 function Aquarium:update(dt)
-    clock = clock + dt
-    glass_filth:update(clock)
+	glass_filth:update()
 end
 
 return Aquarium
+
