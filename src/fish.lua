@@ -8,6 +8,8 @@ function Fish:new(img_src, speed)
 	fish.y = love.math.random(trunc_h + 20, Height - trunc_h - 20)
 	fish.speed = speed
 	fish.img = love.graphics.newImage(img_src)
+	fish.name = "Bruce"
+	fish.clicked = false
 	-- TODO: tell Pablo to draw them to the right and change the sx
 	if random == 0 then
 		fish.swim_dir = "right"
@@ -26,10 +28,12 @@ function Fish:draw()
 end
 
 function Fish:update(dt)
-	if self.swim_dir == "right" then
-		self.x = self.x + (self.speed * dt)
-	else
-		self.x = self.x - (self.speed * dt)
+	if self.clicked == false then
+		if self.swim_dir == "right" then
+			self.x = self.x + (self.speed * dt)
+		else
+			self.x = self.x - (self.speed * dt)
+		end
 	end
 
 	if self.x < trunc_w + 20 then
@@ -41,5 +45,23 @@ function Fish:update(dt)
 	end
 end
 
-return Fish
+function Fish:checkClick(x, y)
+	if
+		CheckHitbox(
+			x,
+			y,
+			self.x - self.img:getWidth() / 2,
+			self.y - self.img:getHeight() / 2,
+			self.x + self.img:getWidth() / 2,
+			self.y + self.img:getHeight() / 2
+		)
+	then
+		if self.clicked then
+			self.clicked = false
+		else
+			self.clicked = true
+		end
+	end
+end
 
+return Fish

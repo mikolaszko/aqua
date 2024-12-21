@@ -17,8 +17,7 @@ function Money:draw()
 end
 
 function Money:update(dt)
-	self.amount = self.amount + dt / 10
-	print(self.amount)
+	self.amount = self.amount + dt / 10 + (#FISHES / 1000)
 end
 
 return Money

@@ -6,7 +6,7 @@ function Sidemenu:new()
 	local sidemenu = {}
 	sidemenu.open = true
 
-	fish_button = button:new(Width - Width * 0.1, 50, "assets/fish1.png")
+	Fish_Button = button:new(Width - Width * 0.1, 50, "assets/fish1.png")
 
 	setmetatable(sidemenu, Sidemenu)
 	return sidemenu
@@ -17,7 +17,7 @@ function Sidemenu:draw()
 		love.graphics.setColor(0, 0, 0)
 		love.graphics.rectangle("fill", Width - Width * 0.2, 0, Width * 0.2, Height)
 		love.graphics.setColor(1, 1, 1)
-		fish_button:draw()
+		Fish_Button:draw()
 	end
 end
 

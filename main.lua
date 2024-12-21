@@ -7,13 +7,16 @@ FILTH = require("src.filth")
 PLANT = require("src.plant")
 MONEY = require("src.money")
 SIDEMENU = require("src.sidemenu")
+UTILS = require("src.util")
 local aquarium = nil
 local sidemenu = nil
 
 MONEY_RES = nil
 
+local bg = nil
+
 function love.load()
-	love.graphics.setBackgroundColor(122 / 255, 122 / 255, 255 / 255)
+	bg = love.graphics.newImage("assets/bg.jpeg")
 	FISHES = {}
 	PLANTS = {}
 
@@ -23,6 +26,7 @@ function love.load()
 end
 
 function love.draw()
+	love.graphics.draw(bg, Width / 2, Height / 2, 0, 1, 1, bg:getWidth() / 2, bg:getHeight() / 2)
 	for _, v in ipairs(FISHES) do
 		v:draw()
 	end
@@ -41,4 +45,12 @@ function love.update(dt)
 	for _, v in ipairs(FISHES) do
 		v:update(dt)
 	end
+end
+
+function love.mousereleased(x, y)
+	for _, v in ipairs(FISHES) do
+		v:checkClick(x, y)
+	end
+
+	Fish_Button:checkClick(x, y)
 end
