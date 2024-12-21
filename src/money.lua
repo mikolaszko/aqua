@@ -1,10 +1,9 @@
 local Money = {}
 Money.__index = Money
 
-local width, height = love.graphics.getDimensions()
 function Money:new()
 	local money = {}
-	money.amount = 0
+	money.amount = 5
 	money.img = love.graphics.newImage("assets/dollar.png")
 	local font = love.graphics.getFont()
 	money.label = love.graphics.newText(font, self.amount)
@@ -13,8 +12,8 @@ function Money:new()
 end
 
 function Money:draw()
-	love.graphics.draw(self.img, width - 100, 30)
-	love.graphics.print(math.floor(self.amount), width - 50, 30, 0, 3, 3)
+	love.graphics.draw(self.img, Width - 100, 30)
+	love.graphics.print(math.floor(self.amount), Width - 50, 30, 0, 3, 3)
 end
 
 function Money:update(dt)
