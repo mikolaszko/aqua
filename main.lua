@@ -8,17 +8,20 @@ PLANT = require("src.plant")
 MONEY = require("src.money")
 UTILS = require("src.util")
 UI = require("src.ui")
+FILTER = require("src.filtr")
 
 MONEY_RES = nil
 local aquarium = nil
 local bg = nil
 local ui = nil
+local filter = nil
 
 function love.load()
 	bg = love.graphics.newImage("assets/bg.jpeg")
 	FISHES = {}
 	PLANTS = {}
 	ui = UI:new()
+	filter = FILTER:new()
 	MONEY_RES = MONEY:new()
 	aquarium = AQUARIUM:new(0.4, 0.4)
 end
@@ -33,6 +36,7 @@ function love.draw()
 	end
 
 	MONEY_RES:draw()
+	filter:draw()
 	aquarium:draw()
 	ui:draw()
 end

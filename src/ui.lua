@@ -26,6 +26,7 @@ function UI:draw()
 		)
 	end
 
+	-- non sidebarsection
 	if self.sidebar_open == false then
 		love.graphics.line(Width - 30, 50, Width - 10, 50)
 		love.graphics.line(Width - 30, 70, Width - 10, 70)
