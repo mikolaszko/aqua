@@ -6,23 +6,21 @@ AQUARIUM = require("src.aquarium")
 FILTH = require("src.filth")
 PLANT = require("src.plant")
 MONEY = require("src.money")
-SIDEMENU = require("src.sidemenu")
 UTILS = require("src.util")
-local aquarium = nil
-local sidemenu = nil
+UI = require("src.ui")
 
 MONEY_RES = nil
-
+local aquarium = nil
 local bg = nil
+local ui = nil
 
 function love.load()
 	bg = love.graphics.newImage("assets/bg.jpeg")
 	FISHES = {}
 	PLANTS = {}
-
+	ui = UI:new()
 	MONEY_RES = MONEY:new()
 	aquarium = AQUARIUM:new(0.4, 0.4)
-	sidemenu = SIDEMENU:new()
 end
 
 function love.draw()
@@ -36,7 +34,7 @@ function love.draw()
 
 	MONEY_RES:draw()
 	aquarium:draw()
-	sidemenu:draw()
+	ui:draw()
 end
 
 function love.update(dt)
@@ -52,5 +50,5 @@ function love.mousereleased(x, y)
 		v:checkClick(x, y)
 	end
 
-	Fish_Button:checkClick(x, y)
+	ui:checkClick(x, y)
 end

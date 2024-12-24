@@ -12,8 +12,8 @@ function Money:new()
 end
 
 function Money:draw()
-	love.graphics.draw(self.img, Width - 100, 30)
-	love.graphics.print(math.floor(self.amount), Width - 50, 30, 0, 3, 3)
+	love.graphics.draw(self.img, 100, 30)
+	love.graphics.print(math.floor(self.amount), 50, 30, 0, 3, 3)
 end
 
 function Money:update(dt)

@@ -56,11 +56,7 @@ function Fish:checkClick(x, y)
 			self.y + self.img:getHeight() / 2
 		)
 	then
-		if self.clicked then
-			self.clicked = false
-		else
-			self.clicked = true
-		end
+		self.clicked = not self.clicked
 	end
 end
 
