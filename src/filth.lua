@@ -17,11 +17,17 @@ function Filth:draw()
 end
 
 function Filth:update()
-	local fish_pol = #FISHES * 2
-	local plants_apol = #FISHES / #PLANTS * 100
-	local filtration_apol = 1 / 500
+	local fish_pol = (#FISHES / 10 + 0.01) / 100
+	local plants_apol = (#PLANTS + 0.01) * 100
+	-- make this dynamic based on the amount of filter systems and plants
+	local filtration_apol = 1 / 1000
 
-	self.intensity = self.intensity + (fish_pol / plants_apol * filtration_apol)
+	if filtration_apol < fish_pol / plants_apol then
+		self.intensity = self.intensity + (fish_pol / plants_apol * filtration_apol)
+	else
+		self.intensity = 0
+	end
+	print(self.intensity)
 end
 
 return Filth
