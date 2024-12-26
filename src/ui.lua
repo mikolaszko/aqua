@@ -17,8 +17,8 @@ end
 function UI:draw()
 	-- sidebar section --
 	if self.sidebar_open then
-		love.graphics.setColor(122 / 255, 122 / 255, 122 / 255)
-		love.graphics.rectangle("fill", Width - Width * 0.2, 0, Width * 0.2, Height)
+		love.graphics.setColor(43 / 255, 43 / 255, 150 / 255)
+		love.graphics.line(Width - Width * 0.2, 0, Width - Width * 0.2, Height)
 		love.graphics.setColor(1, 1, 1)
 
 		-- fish buttons
