@@ -10,7 +10,8 @@ UTILS = require("src.util")
 UI = require("src.ui")
 FILTER = require("src.filtr")
 
-MONEY_RES = nil
+Money_res = nil
+Glass_filth = nil
 local aquarium = nil
 local bg = nil
 local ui = nil
@@ -20,9 +21,10 @@ function love.load()
 	bg = love.graphics.newImage("assets/bg.jpeg")
 	FISHES = {}
 	PLANTS = {}
+	Glass_filth = FILTH:new()
 	ui = UI:new()
 	filter = FILTER:new()
-	MONEY_RES = MONEY:new()
+	Money_res = MONEY:new()
 	aquarium = AQUARIUM:new(0.4, 0.4)
 end
 
@@ -35,15 +37,16 @@ function love.draw()
 		v:draw()
 	end
 
-	MONEY_RES:draw()
+	Money_res:draw()
 	filter:draw()
 	aquarium:draw()
+	Glass_filth:draw()
 	ui:draw()
 end
 
 function love.update(dt)
-	aquarium:update(dt)
-	MONEY_RES:update(dt)
+	Glass_filth:update()
+	Money_res:update(dt)
 	for _, v in ipairs(FISHES) do
 		v:update(dt)
 	end

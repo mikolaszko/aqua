@@ -3,7 +3,7 @@ Money.__index = Money
 
 function Money:new()
 	local money = {}
-	money.amount = 5
+	money.amount = 10
 	money.img = love.graphics.newImage("assets/dollar.png")
 	local font = love.graphics.getFont()
 	money.label = love.graphics.newText(font, self.amount)

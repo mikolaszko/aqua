@@ -23,7 +23,7 @@ function Filter:draw()
 		love.graphics.draw(
 			self.strawberry,
 			trunc_w + 150,
-			trunc_h,
+			trunc_h - 50,
 			0,
 			1,
 			2,
@@ -33,7 +33,7 @@ function Filter:draw()
 		love.graphics.draw(
 			self.strawberry,
 			Width - trunc_w - 150,
-			trunc_h,
+			trunc_h - 50,
 			0,
 			1,
 			2,

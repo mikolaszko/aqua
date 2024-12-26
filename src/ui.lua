@@ -5,6 +5,8 @@ function UI:new()
 	local ui = {}
 	ui.o_fish = love.graphics.newImage("assets/fish1.png")
 	ui.shrimp = love.graphics.newImage("assets/shrimp.png")
+
+	ui.plant1 = love.graphics.newImage("assets/plant1.png")
 	ui.sidebar_open = false
 	-- aquarium | fish
 	ui.sidebar_mode = 0
@@ -33,8 +35,19 @@ function UI:draw()
 		love.graphics.rectangle("fill", Width - 170, 60, 60, 60, 5, 5)
 		love.graphics.draw(
 			self.shrimp,
-			Width - 170 + (self.shrimp:getWidth() / 2),
+			Width - 170 + (self.plant1:getWidth() / 2),
 			60 + (self.shrimp:getHeight() / 2),
+			0,
+			1,
+			1
+		)
+
+		-- plants
+		love.graphics.rectangle("fill", Width - 100, 200, 60, 60, 5, 5)
+		love.graphics.draw(
+			self.plant1,
+			Width - 100 + (self.plant1:getWidth() / 2),
+			200 + (self.plant1:getHeight() / 2),
 			0,
 			1,
 			1
@@ -53,14 +66,22 @@ function UI:update() end
 
 function UI:checkClick(x, y)
 	if self.sidebar_open then
-		if CheckHitbox(x, y, Width - 100, 50, Width - 60, 120) and MONEY_RES.amount > 5 and MONEY_RES ~= nil then
-			MONEY_RES.amount = MONEY_RES.amount - 5
+		if CheckHitbox(x, y, Width - 100, 50, Width - 60, 120) and Money_res.amount > 5 and Money_res ~= nil then
+			Money_res.amount = Money_res.amount - 5
 			table.insert(FISHES, FISH:new("assets/fish1.png", 40))
+			Glass_filth:update_polution()
 		end
 
-		if CheckHitbox(x, y, Width - 170, 50, Width - 110, 120) and MONEY_RES.amount > 3 and MONEY_RES ~= nil then
-			MONEY_RES.amount = MONEY_RES.amount - 3
+		if CheckHitbox(x, y, Width - 170, 50, Width - 110, 120) and Money_res.amount > 3 and Money_res ~= nil then
+			Money_res.amount = Money_res.amount - 3
 			table.insert(FISHES, FISH:new("assets/shrimp.png", 40))
+			Glass_filth:update_polution()
+		end
+
+		if CheckHitbox(x, y, Width - 100, 190, Width - 60, 250) and Money_res.amount > 3 and Money_res ~= nil then
+			Money_res.amount = Money_res.amount - 3
+			table.insert(PLANTS, PLANT:new("assets/plant1.png"))
+			Glass_filth:update_polution()
 		end
 	else
 		if CheckHitbox(x, y, Width - 40, 40, Width - 5, 100) then
