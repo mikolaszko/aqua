@@ -3,24 +3,27 @@ UI.__index = UI
 
 function UI:new()
 	local ui = {}
+
 	ui.o_fish = love.graphics.newImage("assets/fish1.png")
 	ui.shrimp = love.graphics.newImage("assets/shrimp.png")
 
 	ui.plant1 = love.graphics.newImage("assets/plant1.png")
+
 	ui.sidebar_x = Width + 1
 	ui.sidebar_open = false
-	-- aquarium | fish
+	-- aquarium | fish (possible naming etc)
 	ui.sidebar_mode = 0
+
 	setmetatable(ui, UI)
 	return ui
 end
 
 function UI:draw()
+	-- sidebar section --
 	love.graphics.setColor(43 / 255, 43 / 255, 150 / 255)
 	love.graphics.line(self.sidebar_x, 0, self.sidebar_x, Height)
 	love.graphics.setColor(1, 1, 1)
 
-	-- sidebar section --
 	if self.sidebar_open then
 		-- fish buttons
 		love.graphics.rectangle("fill", Width - 100, 60, 60, 60, 5, 5)
