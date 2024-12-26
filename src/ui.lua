@@ -7,6 +7,7 @@ function UI:new()
 	ui.shrimp = love.graphics.newImage("assets/shrimp.png")
 
 	ui.plant1 = love.graphics.newImage("assets/plant1.png")
+	ui.sidebar_x = Width + 1
 	ui.sidebar_open = false
 	-- aquarium | fish
 	ui.sidebar_mode = 0
@@ -15,12 +16,12 @@ function UI:new()
 end
 
 function UI:draw()
+	love.graphics.setColor(43 / 255, 43 / 255, 150 / 255)
+	love.graphics.line(self.sidebar_x, 0, self.sidebar_x, Height)
+	love.graphics.setColor(1, 1, 1)
+
 	-- sidebar section --
 	if self.sidebar_open then
-		love.graphics.setColor(43 / 255, 43 / 255, 150 / 255)
-		love.graphics.line(Width - Width * 0.2, 0, Width - Width * 0.2, Height)
-		love.graphics.setColor(1, 1, 1)
-
 		-- fish buttons
 		love.graphics.rectangle("fill", Width - 100, 60, 60, 60, 5, 5)
 		love.graphics.draw(
@@ -52,41 +53,57 @@ function UI:draw()
 			1,
 			1
 		)
+
+		-- close menu button
+		love.graphics.line(Width - 30, 50, Width - 10, 90)
+		love.graphics.line(Width - 30, 90, Width - 10, 50)
 	end
 
-	-- non sidebarsection
 	if self.sidebar_open == false then
+		-- sidebar button
 		love.graphics.line(Width - 30, 50, Width - 10, 50)
 		love.graphics.line(Width - 30, 70, Width - 10, 70)
 		love.graphics.line(Width - 30, 90, Width - 10, 90)
 	end
 end
 
-function UI:update() end
+function UI:update(dt)
+	-- thank god i dont need scale :)
+	if self.sidebar_open and self.sidebar_x >= Width - 300 then
+		self.sidebar_x = math.floor(self.sidebar_x - (dt * 2000))
+	elseif self.sidebar_open == false and self.sidebar_x < Width then
+		self.sidebar_x = math.floor(self.sidebar_x + (dt * 2000))
+	end
+end
 
 function UI:checkClick(x, y)
 	if self.sidebar_open then
+		-- orange fish
 		if CheckHitbox(x, y, Width - 100, 50, Width - 60, 120) and Money_res.amount > 5 and Money_res ~= nil then
 			Money_res.amount = Money_res.amount - 5
 			table.insert(FISHES, FISH:new("assets/fish1.png", 40))
 			Glass_filth:update_polution()
 		end
 
+		-- shrimp
 		if CheckHitbox(x, y, Width - 170, 50, Width - 110, 120) and Money_res.amount > 3 and Money_res ~= nil then
 			Money_res.amount = Money_res.amount - 3
 			table.insert(FISHES, FISH:new("assets/shrimp.png", 40))
 			Glass_filth:update_polution()
 		end
 
+		-- plant
 		if CheckHitbox(x, y, Width - 100, 190, Width - 60, 250) and Money_res.amount > 3 and Money_res ~= nil then
 			Money_res.amount = Money_res.amount - 3
 			table.insert(PLANTS, PLANT:new("assets/plant1.png"))
 			Glass_filth:update_polution()
 		end
 	else
-		if CheckHitbox(x, y, Width - 40, 40, Width - 5, 100) then
-			self.sidebar_open = true
-		end
+		-- open menu
+	end
+
+	if CheckHitbox(x, y, Width - 40, 40, Width - 5, 100) then
+		self.sidebar_open = not self.sidebar_open
 	end
 end
 

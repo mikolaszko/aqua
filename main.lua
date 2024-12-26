@@ -45,6 +45,7 @@ function love.draw()
 end
 
 function love.update(dt)
+	ui:update(dt)
 	Glass_filth:update()
 	Money_res:update(dt)
 	for _, v in ipairs(FISHES) do
