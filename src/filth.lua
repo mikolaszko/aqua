@@ -19,7 +19,7 @@ end
 function Filth:draw()
 	love.graphics.setColor(1, 1, 1)
 	love.graphics.draw(label, 10, 100)
-	local rate_text = love.graphics.newText(font, self.intensity)
+	local rate_text = love.graphics.newText(font, string.sub(self.intensity, 0, 5))
 	love.graphics.draw(rate_text, 10, 150)
 	love.graphics.setColor(15 / 255, 53 / 255, 3 / 255, self.intensity)
 	love.graphics.rectangle("fill", trunc_w, trunc_h, Width - (2 * trunc_w), Height - (2 * trunc_h))
