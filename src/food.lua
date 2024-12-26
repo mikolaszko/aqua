@@ -2,13 +2,14 @@ local Food = {}
 Food.__index = Food
 
 local pellet = require("src.pellet")
+Pellets = {}
 
 function Food:new()
 	local food = {}
 	food.pack_img = love.graphics.newImage("assets/food.png")
 	food.rad = -math.pi / 2
-	food.pellets = {}
 	food.clicked = false
+	food.pellets = {}
 	setmetatable(food, Food)
 	return food
 end
@@ -51,12 +52,16 @@ function Food:update(dt)
 			self.clicked = false
 		end
 
-		if self.clicked then
-			for _, fish in ipairs(FISHES) do
-				for _, p in pairs(self.pellets) do
-					p:update(dt, fish.x, fish.y)
-				end
+		local reached = {}
+		for i, p in pairs(self.pellets) do
+			p:update(dt, FISHES[i].x, FISHES[i].y)
+			if p.reached then
+				table.insert(reached, i, true)
 			end
+		end
+
+		if #reached == #self.pellets then
+			self.pellets = {}
 		end
 	end
 end
