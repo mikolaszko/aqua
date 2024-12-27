@@ -22,14 +22,7 @@ function Food:draw()
 	end
 
 	love.graphics.circle("fill", 200, 50, 30)
-	love.graphics.draw(
-		self.pack_img,
-		140 + (self.pack_img:getWidth() / 2),
-		-15 + (self.pack_img:getHeight() / 2),
-		0,
-		1,
-		1
-	)
+	love.graphics.draw(self.pack_img, 200, 50, 0, 1, 1, self.pack_img:getWidth() / 2, self.pack_img:getHeight() / 2)
 	love.graphics.setColor(0, 0, 0)
 
 	love.graphics.arc("line", "open", 200, 50, 25, -math.pi / 2, self.rad)

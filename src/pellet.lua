@@ -24,7 +24,6 @@ function Pellet:update(dt, fx, fy)
 
 	if self.reached == false then
 		local angle = math.atan2(fy - self.y, fx - self.x)
-		print(angle)
 
 		local cos = math.cos(angle)
 		local sin = math.sin(angle)
